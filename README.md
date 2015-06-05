@@ -1,4 +1,6 @@
-## Docker-Nagios  [![Docker Build Status](http://72.14.176.28/cpuguy83/nagios)](https://registry.hub.docker.com/u/cpuguy83/nagios)
+## Docker-Nagios  [![Docker Build Status](http://72.14.176.28/imprev/nagios)](https://registry.hub.docker.com/u/imprev/nagios)
+
+NOTE: This is a fork of the very good Docker image from cpuguy83/nagios.  We needed a few more packages and symlinks that may not be necessary for you.  We also included a sample SystemD unit file which includes the switches for keeping most of your config outside the environment.  In our case, we were migrating from a current Nagios setup.
 
 Basic Docker image for running Nagios.<br />
 This is running Nagios 3.5.1

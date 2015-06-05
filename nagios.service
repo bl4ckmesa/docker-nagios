@@ -1,0 +1,19 @@
+[Unit]
+Description=nagios
+After=docker.service
+Requires=docker.service
+
+[Service]
+Environment="HOME=/root"
+TimeoutStartSec=0
+Restart=always
+RestartSec=5
+ExecStartPre=-/usr/bin/docker kill nagios
+ExecStartPre=-/usr/bin/docker rm nagios
+
+
+ExecStart=/usr/bin/docker run --name nagios -p 80:80 -v /etc/localtime:/etc/localtime -v /dev/log:/dev/log -v /data:/data -v /data/libexec:/opt/nagios/libexec -v /data/etc:/opt/nagios/etc -v /data/plugins:/opt/nagios/plugins --privileged=true imprev/nagios
+ExecStop=/usr/bin/docker stop nagios
+
+[Install]
+WantedBy=multi-user.target
