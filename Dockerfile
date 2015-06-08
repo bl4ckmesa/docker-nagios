@@ -56,4 +56,11 @@ VOLUME /opt/nagios/libexec
 VOLUME /var/log/apache2
 VOLUME /usr/share/snmp/mibs
 
+# Dependencies for vmkfstools perl script
+RUN apt-get -y install unzip libxml-libxml-perl libclass-methodmaker-perl libcrypt-ssleay-perl libarchive-zip-perl
+RUN wget http://sourceforge.net/projects/viperltoolkit/files/latest/download -O /tmp/vtk.zip
+RUN cd /tmp && unzip vtk.zip
+RUN cd /tmp/vipertoolkit && perl Makefile.PL && make && make install
+RUN wget http://github.com/bl4ckmesa/docker-nagios/lib/VIExt.pm
+
 CMD ["/usr/local/bin/start_nagios"]
