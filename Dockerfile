@@ -61,6 +61,8 @@ RUN apt-get -y install unzip libxml-libxml-perl libclass-methodmaker-perl libcry
 RUN wget http://sourceforge.net/projects/viperltoolkit/files/latest/download -O /tmp/vtk.zip
 RUN cd /tmp && unzip vtk.zip
 RUN cd /tmp/viperltoolkit && perl Makefile.PL && make && make install
-RUN wget https://raw.githubusercontent.com/bl4ckmesa/docker-nagios/master/lib/VIExt.pm
+RUN wget https://raw.githubusercontent.com/bl4ckmesa/docker-nagios/master/lib/VIExt.pm -O /usr/local/share/perl/5.14.2/VMware/VIExt.pm
+
+RUN apt-get -y install python-pywbem
 
 CMD ["/usr/local/bin/start_nagios"]
