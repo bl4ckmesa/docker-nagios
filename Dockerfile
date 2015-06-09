@@ -63,6 +63,7 @@ RUN cd /tmp && unzip vtk.zip
 RUN cd /tmp/viperltoolkit && perl Makefile.PL && make && make install
 # VIExt is not in this tool; you'll need to get it yourself from the VMWare CLI package.
 
-RUN apt-get -y install python-pywbem
+RUN apt-get -y install python-pywbem python-pip
+RUN pip install hipsaint
 
 CMD ["/usr/local/bin/start_nagios"]
