@@ -12,7 +12,21 @@ ExecStartPre=-/usr/bin/docker kill nagios
 ExecStartPre=-/usr/bin/docker rm nagios
 
 
-ExecStart=/usr/bin/docker run --name nagios -p 80:80 -v /etc/localtime:/etc/localtime -v /dev/log:/dev/log -v /data/tmp:/tmp -v /data:/data -v /data/var:/opt/nagios/var -v /data/libexec:/opt/nagios/libexec -v /data/etc:/opt/nagios/etc -v /data/plugins:/opt/nagios/plugins -v /data/bin/vmkfstools:/usr/bin/vmkfstools -v /data/lib/VIExt.pm:/usr/local/share/perl/5.14.2/VMware/VIExt.pm -v /data/.ssh:/opt/nagios/.ssh --privileged=true imprev/nagios
+ExecStart=/usr/bin/docker run --name nagios -p 80:80 \
+	-v /etc/localtime:/etc/localtime \
+	-v /dev/log:/dev/log \
+	-v /data:/data \
+	-v /data/tmp:/tmp \
+	-v /data/.ssh:/opt/nagios/.ssh \
+	-v /data/var:/opt/nagios/var \
+	-v /data/share:/opt/nagios/share \
+	-v /data/libexec:/opt/nagios/libexec \
+	-v /data/etc:/opt/nagios/etc \
+	-v /data/plugins:/opt/nagios/plugins \
+	-v /data/bin/vmkfstools:/usr/bin/vmkfstools \
+	-v /data/nagios.conf:/etc/apache2/conf.d/nagios.conf \
+	-v /data/lib/VIExt.pm:/usr/local/share/perl/5.14.2/VMware/VIExt.pm \
+	--privileged=true imprev/nagios
 ExecStop=/usr/bin/docker stop nagios
 
 [Install]
